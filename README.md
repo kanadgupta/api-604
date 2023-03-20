@@ -1,113 +1,81 @@
-# node-typescript-boilerplate
+# Testing repo for https://github.com/jaredwray/keyv/issues/516
 
-[![Sponsor][sponsor-badge]][sponsor]
-[![TypeScript version][ts-badge]][typescript-4-9]
-[![Node.js version][nodejs-badge]][nodejs]
-[![APLv2][license-badge]][license]
-[![Build Status - GitHub Actions][gha-badge]][gha-ci]
+By https://github.com/afreemanio
 
-👩🏻‍💻 Developer Ready: A comprehensive template. Works out of the box for most [Node.js][nodejs] projects.
+Forked from:
+https://github.com/jsynowiec/node-typescript-boilerplate
 
-🏃🏽 Instant Value: All basic tools included and configured:
 
-- [TypeScript][typescript] [4.9][typescript-4-9]
-- [ESM][esm]
-- [ESLint][eslint] with some initial rules recommendation
-- [Jest][jest] for fast unit testing and code coverage
-- Type definitions for Node.js and Jest
-- [Prettier][prettier] to enforce consistent code style
-- NPM [scripts](#available-scripts) for common operations
-- [EditorConfig][editorconfig] for consistent coding style
-- Reproducible environments thanks to [Volta][volta]
-- Example configuration for [GitHub Actions][gh-actions]
-- Simple example of TypeScript code and unit test
+Check notes.md for commands I ran to get the repo to this state, and issues I've
+been having with the activecampaign API (their fault or this tool's?)
 
-🤲 Free as in speech: available under the APLv2 license.
 
-## Getting Started
-
-This project is intended to be used with the latest Active LTS release of [Node.js][nodejs].
-
-### Use as a repository template
-
-To start, just click the **[Use template][repo-template-action]** link (or the green button). Start adding your code in the `src` and unit tests in the `__tests__` directories.
-
-### Clone repository
-
-To clone the repository, use the following commands:
-
-```sh
-git clone https://github.com/jsynowiec/node-typescript-boilerplate
-cd node-typescript-boilerplate
+# Installation and running
+- Clone the repo
+- Copy .env.example to .env, fill the values if you'd like (you don't need them
+  to see the intended behavior)
+- Run the following commands to install
+```
 npm install
 ```
-
-### Download latest release
-
-Download and unzip the current **main** branch or one of the tags:
-
-```sh
-wget https://github.com/jsynowiec/node-typescript-boilerplate/archive/main.zip -O node-typescript-boilerplate.zip
-unzip node-typescript-boilerplate.zip && rm node-typescript-boilerplate.zip
+- Run the following commands to run on OS with ts-node/debugger (broken)
+```
+npm run debug
+```
+- Run the following commands to run on OS with ts-node/debugger, hot reload
+  (broken)
+```
+npm run debug2
+```
+- Run the following commands to build and run on OS (working)
+```
+npm run build
+npm run start
 ```
 
-## Available Scripts
 
-- `clean` - remove coverage data, Jest cache and transpiled files,
-- `prebuild` - lint source files and tests before building,
-- `build` - transpile TypeScript to ES6,
-- `build:watch` - interactive watch mode to automatically transpile source files,
-- `lint` - lint source files and tests,
-- `prettier` - reformat files,
-- `test` - run tests,
-- `test:watch` - interactive watch mode to automatically re-run tests
+# The problem
 
-## Additional Information
+So, it appears to be an issue when I want to run ts-node. First encountered this 
+issue with nodemon, then node itself.
 
-### Why include Volta
 
-[Volta][volta]’s toolchain always keeps track of where you are, it makes sure the tools you use always respect the settings of the project you’re working on. This means you don’t have to worry about changing the state of your installed software when switching between projects. For example, it's [used by engineers at LinkedIn][volta-tomdale] to standardize tools and have reproducible development environments.
+```
+SyntaxError: Cannot use import statement outside a module
+    at internalCompileFunction (node:internal/vm:73:18)
+    at wrapSafe (node:internal/modules/cjs/loader:1166:20)
+    at Module._compile (node:internal/modules/cjs/loader:1210:27)
+    at Module._extensions..js (node:internal/modules/cjs/loader:1300:10)
+    at Object.require.extensions.<computed> [as .ts] (/home/ubuntu/repositories/andrew/api-604/node_modules/ts-node/src/index.ts:1608:43)
+    at Module.load (node:internal/modules/cjs/loader:1103:32)
+    at Function.Module._load (node:internal/modules/cjs/loader:942:12)
+    at Module.require (node:internal/modules/cjs/loader:1127:19)
+    at require (node:internal/modules/helpers:112:18)
+    at Object.<anonymous> (/home/ubuntu/repositories/andrew/api-604/src/activecampaign.ts:2:1)
+```
 
-I recommend to [install][volta-getting-started] Volta and use it to manage your project's toolchain.
 
-### ES Modules
 
-This template uses native [ESM][esm]. Make sure to read [this][nodejs-esm], and [this][ts47-esm] first.
+# How I got here
 
-If your project requires CommonJS, you will have to [convert to ESM][sindresorhus-esm].
+Exploring activecampaign API:
+https://developers.activecampaign.com/reference/update-list-status-for-contact
+See the tool 'api' for node.js, looks great.
+Go to the website for the tool, have no sweet clue how to install.
+Follow the instructions on the main page, and doesn't work.
 
-Please do not open issues for questions regarding CommonJS or ESM on this repo.
+After some googling, I figure out that I have to use an API call to find the
+same openAPI definition they are using on the website:
 
-## Backers & Sponsors
+https://dash.readme.com/api/v1/api-registry/42ian3xklfclgj2y
 
-Support this project by becoming a [sponsor][sponsor].
 
-## License
+Then, I copy paste this locally into my repo, find the readme for the API tool,
+follow the instructions it gives to install, THEN have the issues from notes.md,
+THEN run into this issue (https://github.com/readmeio/api/issues/604)
 
-Licensed under the APLv2. See the [LICENSE](https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE) file for details.
 
-[ts-badge]: https://img.shields.io/badge/TypeScript-4.9-blue.svg
-[nodejs-badge]: https://img.shields.io/badge/Node.js->=%2018.12-blue.svg
-[nodejs]: https://nodejs.org/dist/latest-v18.x/docs/api/
-[gha-badge]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml/badge.svg
-[gha-ci]: https://github.com/jsynowiec/node-typescript-boilerplate/actions/workflows/nodejs.yml
-[typescript]: https://www.typescriptlang.org/
-[typescript-4-9]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-9/
-[license-badge]: https://img.shields.io/badge/license-APLv2-blue.svg
-[license]: https://github.com/jsynowiec/node-typescript-boilerplate/blob/main/LICENSE
-[sponsor-badge]: https://img.shields.io/badge/♥-Sponsor-fc0fb5.svg
-[sponsor]: https://github.com/sponsors/jsynowiec
-[jest]: https://facebook.github.io/jest/
-[eslint]: https://github.com/eslint/eslint
-[wiki-js-tests]: https://github.com/jsynowiec/node-typescript-boilerplate/wiki/Unit-tests-in-plain-JavaScript
-[prettier]: https://prettier.io
-[volta]: https://volta.sh
-[volta-getting-started]: https://docs.volta.sh/guide/getting-started
-[volta-tomdale]: https://twitter.com/tomdale/status/1162017336699838467?s=20
-[gh-actions]: https://github.com/features/actions
-[repo-template-action]: https://github.com/jsynowiec/node-typescript-boilerplate/generate
-[esm]: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Guide/Modules
-[sindresorhus-esm]: https://gist.github.com/sindresorhus/a39789f98801d908bbc7ff3ecc99d99c
-[nodejs-esm]: https://nodejs.org/docs/latest-v16.x/api/esm.html
-[ts47-esm]: https://devblogs.microsoft.com/typescript/announcing-typescript-4-9/#esm-nodejs
-[editorconfig]: https://editorconfig.org
+
+
+
+

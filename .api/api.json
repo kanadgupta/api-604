@@ -1,0 +1,11 @@
+{
+  "version": "1.0",
+  "apis": [
+    {
+      "identifier": "activecampaign",
+      "source": "activecampaignapifixed.json",
+      "integrity": "sha512-rz7c+1gFxoAy375VERArjD7JHNkdRaHKJqYMbSQNCcXZxHv9EdwhqZHjPfjQvbaheFdTWerfCS8iCrxi4IMgUg==",
+      "installerVersion": "5.0.8"
+    }
+  ]
+}
