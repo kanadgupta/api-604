@@ -13248,7 +13248,7 @@
                         "format": "int32"
                       },
                       "global": {
-                        "type": "mixed type"
+                        "type": "string"
                       },
                       "company_name": {
                         "type": "string"
@@ -16279,7 +16279,7 @@
                         "format": "int32"
                       },
                       "global": {
-                        "type": "mixed type"
+                        "type": "string"
                       },
                       "company_name": {
                         "type": "string"
@@ -33233,7 +33233,7 @@
                               "description": "id of the field"
                             },
                             "value": {
-                              "type": "mixed type",
+                              "type": "string",
                               "description": "Data type, appropriate for the field"
                             }
                           },
@@ -33845,7 +33845,7 @@
                               "description": "id of the field"
                             },
                             "value": {
-                              "type": "mixed type",
+                              "type": "string",
                               "description": "Data type, appropriate for the field"
                             }
                           },
