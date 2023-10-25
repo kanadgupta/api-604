@@ -1,5 +1,5 @@
 
-import api from '@api/activecampaign';
+import api from '@api/api-settings';
 
 // UUID from:
 // https://docs.readme.com/main/reference/getapiregistry
@@ -16,7 +16,11 @@ api.auth(process.env.ACTIVECAMPAIGN_API_KEY || "");
 export async function removeContact(email: string) {
   const getContact = await api.listAllContacts({
     email: email,
+  }).catch(err => {
+    console.error("fetch error")
+    throw err;
   });
+
   if (getContact.status != 200) {
     throw new Error('Contact not found');
   }

@@ -6,6 +6,15 @@
       "source": "activecampaignapifixed.json",
       "integrity": "sha512-rz7c+1gFxoAy375VERArjD7JHNkdRaHKJqYMbSQNCcXZxHv9EdwhqZHjPfjQvbaheFdTWerfCS8iCrxi4IMgUg==",
       "installerVersion": "5.0.8"
+    },
+    {
+      "private": true,
+      "identifier": "api-settings",
+      "source": "activecampaignapifixed.json",
+      "integrity": "sha512-Excn9GpcBez+3RCLK/iK/oAlLPqUEMmFPu5CINvS16h+GENvhATTEPOtVL+AriF+zUzkVejwBK1VksgtfcJItw==",
+      "installerVersion": "7.0.0-beta.3",
+      "language": "js",
+      "createdAt": "2023-10-25T22:57:10.161Z"
     }
   ]
 }
